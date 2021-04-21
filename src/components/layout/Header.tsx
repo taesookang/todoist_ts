@@ -6,12 +6,12 @@ export const Header: React.FC = () => {
         <header>
             <nav>
                 <div className="logo">
-                    <img src="/images/logo/png" alt="Todoist"/>
+                    <img src="/images/logo.png" alt="Todoist"/>
                 </div>
-                <div className="setting">
+                <div className="settings">
                     <ul>
-                        <li>+</li>
-                        <li><FaPizzaSlice/></li>
+                        <li data-testId="quick-add-task-action" className="settings__add">+</li>
+                        <li data-testId="darkmode-action" className="settings__darkmode"><FaPizzaSlice/></li>
                     </ul>
                 </div>
             </nav>
