@@ -10,8 +10,8 @@ export const Header: React.FC = () => {
                 </div>
                 <div className="settings">
                     <ul>
-                        <li data-testId="quick-add-task-action" className="settings__add">+</li>
-                        <li data-testId="darkmode-action" className="settings__darkmode"><FaPizzaSlice/></li>
+                        <li data-testid="quick-add-task-action" className="settings__add">+</li>
+                        <li data-testid="darkmode-action" className="settings__darkmode"><FaPizzaSlice/></li>
                     </ul>
                 </div>
             </nav>

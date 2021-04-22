@@ -7,18 +7,13 @@ interface Task {
   userId?: string;
 }
 
-type TaskS = Task[];
-
 type Func = () => void;
 
 interface Project {
-    docId: string;
-    name?: string;
-    projectId?: string;
-    userId?: string;
+  projectId: string;
+  docId?: string;
+  name?: string;
+  userId?: string;
 }
 
-type Projects = Project[]
-
-
-export type { Task, TaskS, Func, Project, Projects }
+export type { Task, Func, Project };

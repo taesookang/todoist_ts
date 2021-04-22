@@ -1,5 +1,4 @@
 import React from 'react'
-import { TaskS } from '../types'
 import Checkbox from './Checkbox'
 import { useTasks } from '../hooks'
 

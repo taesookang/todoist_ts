@@ -3,13 +3,13 @@ import { firebase } from "../firebase";
 import { collatedTasksExist } from "../helpers";
 import moment from "moment";
 import { Query } from "@firebase/firestore-types";
-import { Task, TaskS, Func, Projects } from '../types'
+import { Task, Func, Project } from '../types'
 
 
 
 export const useTasks = ( selectedProject: string ) => {
-  const [tasks, setTasks] = useState<TaskS>([]);
-  const [achievedTasks, setAchievedTasks] = useState<TaskS>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [achievedTasks, setAchievedTasks] = useState<Task[]>([]);
 
   useEffect((): Func => {
     let unsubscribe: Query | Func = 
@@ -32,7 +32,7 @@ export const useTasks = ( selectedProject: string ) => {
         : unsubscribe;
 
     unsubscribe = unsubscribe.onSnapshot((snapshot) => {
-      const newTasks: TaskS = snapshot.docs.map((task) => ({
+      const newTasks: Task[] = snapshot.docs.map((task) => ({
         id: task.id,
         ...task.data(),
       }));
@@ -40,7 +40,7 @@ export const useTasks = ( selectedProject: string ) => {
       setTasks(
         selectedProject === "NEXT_7"
           ? newTasks.filter(
-              (task: Task) =>
+              (task) =>
                 moment(task.date, "DD-MM-YYYY").diff(moment(), "days") <= 7 &&
                 task.achieved !== true
             )
@@ -57,8 +57,8 @@ export const useTasks = ( selectedProject: string ) => {
 
 
 
-export const useProjects = () => {
-  const [projects, setProjects] = useState<Projects>([]);
+export const useProjects = (): {projects: Project[], setProjects: React.Dispatch<React.SetStateAction<Project[]>>} => {
+  const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
     firebase
@@ -68,9 +68,10 @@ export const useProjects = () => {
       .orderBy("projectId")
       .get()
       .then((snapshot) => {
-        const allProjects: Projects = snapshot.docs.map((project) => ({
+        const allProjects = snapshot.docs.map((project) => ({
           ...project.data(),
-          docId: project.id
+          docId: project.id,
+          projectId: project.get('projectId')
         }));
 
         if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
