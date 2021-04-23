@@ -11,9 +11,15 @@ type Func = () => void;
 
 interface Project {
   projectId: string;
-  docId?: string;
+  docId: string;
   name?: string;
   userId?: string;
+  key?: string;
 }
 
-export type { Task, Func, Project };
+interface Title {
+  key: string,
+  name: string
+}
+
+export type { Task, Func, Project, Title };

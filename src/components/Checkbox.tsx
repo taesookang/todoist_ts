@@ -17,7 +17,9 @@ export const Checkbox: React.FC<Props> = ({ id }) => {
       className="checkbox-holder"
       data-testid="checkbox-action"
       onClick={() => achievedTask}
-    ></div>
+    >
+      <span className="checkbox" />
+    </div>
     
   );
 };

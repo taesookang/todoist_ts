@@ -9,7 +9,7 @@ interface Props {
 
 export const Content: React.FC<Props> = () => {
     return(
-        <section>
+        <section className="content">
             <Sidebar />
             <Tasks />
         </section>

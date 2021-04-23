@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useProjectsValue, useSelectedProjectValue } from "../context";
+import IndividualProject from './IndividualProject';
 
 interface Props {
   activeValue: any;
@@ -30,9 +31,9 @@ export const Projects: React.FC<Props> = ({ activeValue }) => {
             onClick={() => {
               setActive(project.projectId);
               setSelectedProject(project.projectId);
-            }}
+            }} 
           >
-            {JSON.stringify(project)}
+            <IndividualProject project={project}/>
           </li>
         ))}
     </>
