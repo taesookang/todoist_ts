@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import { useProjectsValue, useSelectedProjectValue } from "../context";
 import IndividualProject from './IndividualProject';
 
-interface Props {
-  activeValue: any;
-}
-
-export const Projects: React.FC<Props> = ({ activeValue }) => {
-  const [active, setActive] = useState(activeValue);
+export const Projects: React.FC = () => {
+  const [active, setActive] = useState<string | null>(null);
   const { setSelectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
 

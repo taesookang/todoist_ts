@@ -6,9 +6,9 @@ interface Props {
 }
 
 export const Checkbox: React.FC<Props> = ({ id }) => {
-  const achievedTask = () => {
+  const archivedTask = () => {
     firebase.firestore().collection("tasks").doc(id).update({
-      achieved: true,
+      archived: true,
     });
   };
 
@@ -16,7 +16,7 @@ export const Checkbox: React.FC<Props> = ({ id }) => {
     <div
       className="checkbox-holder"
       data-testid="checkbox-action"
-      onClick={() => achievedTask}
+      onClick={() => archivedTask}
     >
       <span className="checkbox" />
     </div>

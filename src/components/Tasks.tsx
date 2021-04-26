@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Checkbox from './Checkbox'
+import AddTask from './AddTask'
 import { useTasks } from '../hooks'
 import { collatedTasks } from '../constants'
 import { getTitle, getCollatedTitle, collatedTasksExist } from '../helpers'
@@ -41,6 +42,8 @@ export const Tasks: React.FC = () => {
                     </li>
                 ))}
             </ul>
+
+            <AddTask />
         </div>
     )
 }

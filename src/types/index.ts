@@ -1,6 +1,6 @@
 interface Task {
   id: string;
-  achieved?: boolean;
+  archived?: boolean;
   date?: string;
   projectId?: string;
   task?: string;

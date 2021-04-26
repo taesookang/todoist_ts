@@ -1,0 +1,8 @@
+.project-overlay {
+    @include box-overlay();
+    background: white;
+
+    &__list li {
+        @include task-item();
+    }
+}

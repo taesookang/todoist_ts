@@ -9,7 +9,7 @@ import { Task, Func, Project } from '../types'
 
 export const useTasks = ( selectedProject: string ) => {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [achievedTasks, setAchievedTasks] = useState<Task[]>([]);
+  const [archivedTasks, setArchivedTasks] = useState<Task[]>([]);
 
   useEffect((): Func => {
     let unsubscribe: Query | Func = 
@@ -42,17 +42,17 @@ export const useTasks = ( selectedProject: string ) => {
           ? newTasks.filter(
               (task) =>
                 moment(task.date, "DD-MM-YYYY").diff(moment(), "days") <= 7 &&
-                task.achieved !== true
+                task.archived !== true
             )
-          : newTasks.filter((task) => task.achieved !== true)
+          : newTasks.filter((task) => task.archived !== true)
       );
-      setAchievedTasks(newTasks.filter((task) => task.achieved !== false));
+      setArchivedTasks(newTasks.filter((task) => task.archived !== false));
     });
 
     return () => unsubscribe;
   }, [selectedProject]);
 
-  return { tasks, achievedTasks };
+  return { tasks, archivedTasks };
 };
 
 
