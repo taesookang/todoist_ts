@@ -22,6 +22,7 @@ export const Sidebar: React.FC = () => {
           className={active === "inbox" ? "active" : undefined}
         >
           <div
+            aria-label="Show inbox tasks"
             tabIndex={0}
             role="button"
             onClick={() => {
@@ -44,6 +45,7 @@ export const Sidebar: React.FC = () => {
           className={active === "today" ? "active" : undefined}
         >
           <div
+            aria-label="Show today's asks"
             tabIndex={0}
             role="button"
             onClick={() => {
@@ -66,6 +68,7 @@ export const Sidebar: React.FC = () => {
           className={active === "next_7" ? "active" : undefined}
         >
           <div
+            aria-label="Show tasks for the next 7 days"
             tabIndex={0}
             role="button"
             onClick={() => {
@@ -86,6 +89,7 @@ export const Sidebar: React.FC = () => {
       </ul>
       <div
         className="sidebar__middle"
+        aria-label="Show/hide projects"
         onClick={() => setShowProjects(!showProjects)}
         onKeyDown={() => setShowProjects(!showProjects)}
         tabIndex={0}

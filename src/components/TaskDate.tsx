@@ -22,6 +22,7 @@ export const TaskDate: React.FC<Props> = ({
               <div
                 tabIndex={0}
                 role="button"
+                aria-label="Select today as the task date"
                 onClick={() => {
                   setShowTaskDate(false);
                   setTaskDate(moment().format("DD/MM/YYYY"));
@@ -42,6 +43,7 @@ export const TaskDate: React.FC<Props> = ({
               <div
                 tabIndex={0}
                 role="button"
+                aria-label="Select tomorrow as the task date"
                 onClick={() => {
                   setShowTaskDate(false);
                   setTaskDate(moment().add(1, "day").format("DD/MM/YYYY"));
@@ -62,6 +64,7 @@ export const TaskDate: React.FC<Props> = ({
               <div
                 tabIndex={0}
                 role="button"
+                aria-label="Select next week as the task date"
                 onClick={() => {
                   setShowTaskDate(false);
                   setTaskDate(moment().add(7, "days").format("DD/MM/YYYY"));

@@ -34,6 +34,7 @@ export const useTasks = ( selectedProject: string ) => {
     unsubscribe = unsubscribe.onSnapshot((snapshot) => {
       const newTasks: Task[] = snapshot.docs.map((task) => ({
         id: task.id,
+        task: task.get('task'),
         ...task.data(),
       }));
 

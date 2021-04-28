@@ -32,6 +32,7 @@ export const ProjectOverlay: React.FC<Props> = ({
                   }}
                   tabIndex={0}
                   role="button"
+                  aria-label="Select the task project"
                 >
                   {project.name}
                 </div>

@@ -21,7 +21,7 @@ export const Header: React.FC<Props> = ({ darkMode, setDarkMode }) => {
           <ul>
             <li data-testid="quick-add-task-action" className="settings__add">
               <button
-                aria-label="Quick Add Task"
+                aria-label="Quick add task"
                 type="button"
                 onClick={() => {
                   setShowQuickAddTask(true);

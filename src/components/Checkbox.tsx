@@ -3,9 +3,11 @@ import { firebase } from "../firebase";
 
 interface Props {
   id: string;
+  taskDesc: string;
+
 }
 
-export const Checkbox: React.FC<Props> = ({ id }) => {
+export const Checkbox: React.FC<Props> = ({ id, taskDesc }) => {
   const archivedTask = () => {
     firebase.firestore().collection("tasks").doc(id).update({
       archived: true,
@@ -16,6 +18,7 @@ export const Checkbox: React.FC<Props> = ({ id }) => {
     <div
       className="checkbox-holder"
       data-testid="checkbox-action"
+      aria-label={`Mark ${taskDesc} as done?`}
       onClick={() => archivedTask()}
       onKeyDown={() => archivedTask()}
       role="button"

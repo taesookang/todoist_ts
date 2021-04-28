@@ -48,6 +48,7 @@ export const AddProject: React.FC = () => {
             Add Project
           </button>
           <span
+            aria-label="Cancel adding project"
             className="add-project__cancel"
             data-testid="hide-project-overlay"
             onClick={() => setShow(false)}
