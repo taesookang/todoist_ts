@@ -1,20 +1,20 @@
 import { collatedTasks } from "../constants";
 import { Project, Title } from "../types";
 
-function ensure<T>(argument: T | undefined | null, message: string = 'This value was promised to be there.'): T {
-  if (argument === undefined || argument === null) {
-    throw new TypeError(message);
-  }
+// const ensure = <T,>(argument: T | undefined | null, message: string = 'This value was promised to be there.'): T => {
+//   if (argument === undefined || argument === null) {
+//     throw new TypeError(message);
+//   }
 
-  return argument;
-}
+//   return argument;
+// }
 
 export const getTitle = (projects: Project[], projectId: string) => {
-  return ensure(projects.find((project) => project.projectId === projectId));
+  return projects.find((project) => project.projectId === projectId)
 };
 
 export const getCollatedTitle = (tasks: Title[], key: string) => {
-  return ensure(tasks.find((task) => task.key === key));
+  return tasks.find((task) => task.key === key)
 };
 
 export const collatedTasksExist = (selectedProject: string) =>

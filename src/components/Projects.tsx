@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useProjectsValue, useSelectedProjectValue } from "../context";
-import IndividualProject from './IndividualProject';
+import IndividualProject from "./IndividualProject";
 
 export const Projects: React.FC = () => {
   const [active, setActive] = useState<string | null>(null);
@@ -20,16 +20,22 @@ export const Projects: React.FC = () => {
                 ? "active sidebar__project"
                 : "sidebar__project"
             }
-            onKeyDown={() => {
-              setActive(project.projectId);
-              setSelectedProject(project.projectId);
-            }}
-            onClick={() => {
-              setActive(project.projectId);
-              setSelectedProject(project.projectId);
-            }} 
           >
-            <IndividualProject project={project}/>
+            <div
+              className="project-wrapper"
+              role="button"
+              tabIndex={0}
+              onClick={() => {
+                setActive(project.projectId);
+                setSelectedProject(project.projectId);
+              }}
+              onKeyDown={() => {
+                setActive(project.projectId);
+                setSelectedProject(project.projectId);
+              }}
+            >
+              <IndividualProject project={project} />
+            </div>
           </li>
         ))}
     </>

@@ -6,12 +6,20 @@
 
     &__list li {
         @include task-item();
+        padding: 0;
 
-        span:first-of-type {
-            margin-right: 10px;
+        div:nth-child(1) {
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            
+            span:first-of-type {
+                margin-right: 10px;
 
-            svg {
-                fill: gray;
+                svg {
+                    fill: gray;
+                }
             }
         }
     }

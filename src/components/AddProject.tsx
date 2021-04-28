@@ -8,9 +8,9 @@ export const AddProject: React.FC = () => {
   const [projectName, setProjectName] = useState("");
 
   const projectId = generatePushId();
-  const { setProjects } = useProjectsValue();
+  const { projects, setProjects } = useProjectsValue();
 
-  const addPrject = () => {
+  const addProject = () => {
     projectName &&
       firebase
         .firestore()
@@ -21,7 +21,7 @@ export const AddProject: React.FC = () => {
           userId: "tarrak123",
         })
         .then(() => {
-          setProjects([]);
+          setProjects([...projects]);
           setProjectName("");
           setShow(false);
         });
@@ -42,7 +42,7 @@ export const AddProject: React.FC = () => {
           <button
             className="add-project__submit"
             type="button"
-            onClick={() => addPrject()}
+            onClick={() => addProject()}
             data-testid="add-project-submit"
           >
             Add Project
@@ -61,6 +61,9 @@ export const AddProject: React.FC = () => {
         className="add-project__text"
         data-testid="add-project-action"
         onClick={() => setShow(!show)}
+        onKeyDown={() => setShow(!show)}
+        role="button"
+        tabIndex={0}
       >
         Add project
       </span>

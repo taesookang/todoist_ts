@@ -1,12 +1,12 @@
 @mixin box-overlay() {
     -webkit-box-shadow: $generic-box-shadow;
-            box-shadow: $generic-box-shadow;
+    box-shadow: $generic-box-shadow;
     position: absolute;
     width: 100%;
     z-index: 1;
     top: 85px;
     border-radius: 3px;
-  }
+}
 
 @mixin va($va-align: center) {
     display: flex;
@@ -17,6 +17,11 @@
     } @else {
         justify-content: center;
     }
+}
+
+@mixin transparent-btn() {
+    background: transparent;
+    border: 0;
 }
 
 @mixin no-select {

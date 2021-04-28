@@ -1,28 +1,30 @@
 import React, { useState } from "react";
-import { FaRegListAlt, FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegListAlt, FaRegCalendarAlt, FaTimes } from "react-icons/fa";
 import moment from "moment";
 import { firebase } from "../firebase";
 import { useSelectedProjectValue } from "../context";
 import Projects from "./Projects";
 import { collatedTasks } from "../constants/index";
+import ProjectOverlay from "./ProjectOverlay";
+import TaskDate from "./TaskDate";
 
 interface AddTask {
   showAddTaskMain: boolean;
-  showShouldMain: boolean;
+  shouldShowMain: boolean;
   showQuickAddTask: boolean;
   setShowQuickAddTask: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AddTask: React.FC<AddTask> = ({
   showAddTaskMain = true,
-  showShouldMain = false,
+  shouldShowMain = false,
   showQuickAddTask,
   setShowQuickAddTask,
 }) => {
   const [task, setTask] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [project, setProject] = useState("");
-  const [showMain, setShowMain] = useState(showShouldMain);
+  const [showMain, setShowMain] = useState(shouldShowMain);
   const [showProjectOverlay, setShowProjectOverlay] = useState(false);
   const [showTaskDate, setShowTaskDate] = useState(false);
 
@@ -68,6 +70,9 @@ export const AddTask: React.FC<AddTask> = ({
           className="add-task__shallow"
           data-testid="show-main-action"
           onClick={() => setShowMain(!showMain)}
+          onKeyDown={() => setShowMain(!showMain)}
+          tabIndex={0}
+          role="button"
         >
           <span className="add-task__plus">+</span>
           <span className="add-task__text">Add Task</span>
@@ -88,14 +93,30 @@ export const AddTask: React.FC<AddTask> = ({
                     setShowProjectOverlay(false);
                     setShowQuickAddTask(false);
                   }}
+                  onKeyDown={() => {
+                    setShowMain(false);
+                    setShowProjectOverlay(false);
+                    setShowQuickAddTask(false);
+                  }}
+                  tabIndex={0}
+                  role="button"
                 >
-                  X
+                  <FaTimes fontSize="18px" />
                 </span>
               </div>
             </>
           )}
-          <p>Project Overlay here</p>
-          <p>TaskDate here</p>
+          <ProjectOverlay
+            setProject={setProject}
+            showProjectOverlay={showProjectOverlay}
+            setShowProjectOverlay={setShowProjectOverlay}
+          />
+
+          <TaskDate
+            setTaskDate={setTaskDate}
+            showTaskDate={showTaskDate}
+            setShowTaskDate={setShowTaskDate}
+          />
           <input
             type="text"
             className="add-task__content"
@@ -107,7 +128,23 @@ export const AddTask: React.FC<AddTask> = ({
             type="button"
             className="add-task__submit"
             data-testid="add-task"
-            onClick={() => addTask()}
+            onClick={
+              showQuickAddTask
+                ? () => {
+                    addTask();
+                    setShowQuickAddTask(false);
+                  }
+                : () => addTask()
+            }
+            onKeyDown={
+              showQuickAddTask
+                ? () => {
+                    addTask();
+                    setShowQuickAddTask(false);
+                  }
+                : () => addTask()
+            }
+            tabIndex={0}
           >
             Add Task
           </button>
@@ -119,23 +156,35 @@ export const AddTask: React.FC<AddTask> = ({
                 setShowMain(false);
                 setShowProjectOverlay(false);
               }}
+              onKeyPress={() => {
+                setShowMain(false);
+                setShowProjectOverlay(false);
+              }}
+              tabIndex={0}
+              role="button"
             >
-                Cancel
+              Cancel
             </span>
           )}
-          <span 
+          <span
             className="add-task__project"
             data-testid="show-project-overlay"
             onClick={() => setShowProjectOverlay(!showProjectOverlay)}
+            onKeyDown={() => setShowProjectOverlay(!showProjectOverlay)}
+            tabIndex={0}
+            role="button"
           >
-              <FaRegListAlt />
+            <FaRegListAlt />
           </span>
           <span
-          className="add-task__date"
-          data-testid="show-task-date-overlay"
-          onClick={() => setShowTaskDate(!showTaskDate)}
+            className="add-task__date"
+            data-testid="show-task-date-overlay"
+            onClick={() => setShowTaskDate(!showTaskDate)}
+            onKeyDown={() => setShowTaskDate(!showTaskDate)}
+            tabIndex={0}
+            role="button"
           >
-              <FaRegCalendarAlt />
+            <FaRegCalendarAlt />
           </span>
         </div>
       )}

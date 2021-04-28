@@ -16,11 +16,13 @@ export const Checkbox: React.FC<Props> = ({ id }) => {
     <div
       className="checkbox-holder"
       data-testid="checkbox-action"
-      onClick={() => archivedTask}
+      onClick={() => archivedTask()}
+      onKeyDown={() => archivedTask()}
+      role="button"
+      tabIndex={0}
     >
       <span className="checkbox" />
     </div>
-    
   );
 };
 
