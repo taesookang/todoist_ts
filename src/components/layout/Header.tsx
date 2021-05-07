@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaPizzaSlice } from "react-icons/fa";
 import { AddTask } from "../AddTask";
+import { useAddTaskValue } from '../../context'
 
 interface Props {
   darkMode: boolean;
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+
 export const Header: React.FC<Props> = ({ darkMode, setDarkMode }) => {
-  const [shouldShowMain, setShouldShowMain] = useState(false);
-  const [showQuickAddTask, setShowQuickAddTask] = useState(false);
+  // const [shouldShowMain, setShouldShowMain] = useState(false);
+  // const [showQuickAddTask, setShowQuickAddTask] = useState(false);
+
+  const { shouldShowMain, setShouldShowMain, showQuickAddTask, setShowQuickAddTask } = useAddTaskValue();
 
   return (
     <header>

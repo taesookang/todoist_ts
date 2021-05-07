@@ -3,21 +3,19 @@ import { FaRegListAlt, FaRegCalendarAlt, FaTimes } from "react-icons/fa";
 import moment from "moment";
 import { firebase } from "../firebase";
 import { useSelectedProjectValue } from "../context";
-import Projects from "./Projects";
-import { collatedTasks } from "../constants/index";
 import ProjectOverlay from "./ProjectOverlay";
 import TaskDate from "./TaskDate";
 
-interface AddTask {
-  showAddTaskMain: boolean;
-  shouldShowMain: boolean;
+interface Props {
   showQuickAddTask: boolean;
   setShowQuickAddTask: React.Dispatch<React.SetStateAction<boolean>>;
+  showAddTaskMain: boolean;
+  shouldShowMain: boolean;
 }
 
-export const AddTask: React.FC<AddTask> = ({
-  showAddTaskMain = true,
-  shouldShowMain = false,
+export const AddTask: React.FC<Props> = ({
+  showAddTaskMain,
+  shouldShowMain,
   showQuickAddTask,
   setShowQuickAddTask,
 }) => {
@@ -28,9 +26,9 @@ export const AddTask: React.FC<AddTask> = ({
   const [showProjectOverlay, setShowProjectOverlay] = useState(false);
   const [showTaskDate, setShowTaskDate] = useState(false);
 
-  const { selectedProject } = useSelectedProjectValue();
+  const { selectedProject } = useSelectedProjectValue() || {};
 
-  const addTask = () => {
+  const addTask = async () => {
     const projectId = project || selectedProject;
     let collatedDate = "";
 
@@ -40,9 +38,10 @@ export const AddTask: React.FC<AddTask> = ({
       collatedDate = moment().add(7, "days").format("DD/MM/YYYY");
     }
 
-    task &&
+    return (
+      task &&
       projectId &&
-      firebase
+      await firebase
         .firestore()
         .collection("tasks")
         .add({
@@ -57,7 +56,8 @@ export const AddTask: React.FC<AddTask> = ({
           setProject("");
           setShowMain(false);
           setShowProjectOverlay(false);
-        });
+        })
+    );
   };
 
   return (
@@ -159,7 +159,7 @@ export const AddTask: React.FC<AddTask> = ({
                 setShowMain(false);
                 setShowProjectOverlay(false);
               }}
-              onKeyPress={() => {
+              onKeyDown={() => {
                 setShowMain(false);
                 setShowProjectOverlay(false);
               }}

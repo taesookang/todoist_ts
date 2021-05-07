@@ -4,25 +4,31 @@ import AddTask from "./AddTask";
 import { useTasks } from "../hooks";
 import { collatedTasks } from "../constants";
 import { getTitle, getCollatedTitle, collatedTasksExist } from "../helpers";
-import { useSelectedProjectValue, useProjectsValue } from "../context";
+import {
+  useSelectedProjectValue,
+  useProjectsValue,
+  useAddTaskValue,
+} from "../context";
 
 export const Tasks: React.FC = () => {
   const { selectedProject } = useSelectedProjectValue();
-  const { projects } = useProjectsValue();
+  const { projects } = useProjectsValue() || {};
   const { tasks } = useTasks(selectedProject);
+  const { shouldShowMain, setShowQuickAddTask } = useAddTaskValue();
 
   let projectName: string | undefined | null;
 
   if (collatedTasksExist(selectedProject) && selectedProject) {
-    projectName = getTitle(projects, selectedProject)?.name;
+    projectName = getCollatedTitle(collatedTasks, selectedProject)?.name;
   }
 
   if (
+    projects &&
     projects.length > 0 &&
     selectedProject &&
-    collatedTasksExist(selectedProject)
+    !collatedTasksExist(selectedProject)
   ) {
-    projectName = getCollatedTitle(collatedTasks, selectedProject)?.name;
+    projectName = getTitle(projects, selectedProject)?.name;
   }
 
   useEffect(() => {
@@ -36,13 +42,18 @@ export const Tasks: React.FC = () => {
       <ul className="tasks__list">
         {tasks.map((task) => (
           <li key={`${task.id}`}>
-            <Checkbox id={task.id} taskDesc={task.task}/>
+            <Checkbox id={task.id} taskDesc={task.task} />
             <span>{task.task}</span>
           </li>
         ))}
       </ul>
 
-      <AddTask />
+      <AddTask
+        showAddTaskMain={true}
+        shouldShowMain={shouldShowMain}
+        showQuickAddTask={false}
+        setShowQuickAddTask={setShowQuickAddTask}
+      />
     </div>
   );
 };

@@ -1,15 +1,14 @@
 import React from "react";
 import { firebase } from "../firebase";
 
-interface Props {
+interface Props{
   id: string;
   taskDesc: string;
-
 }
 
 export const Checkbox: React.FC<Props> = ({ id, taskDesc }) => {
-  const archivedTask = () => {
-    firebase.firestore().collection("tasks").doc(id).update({
+  const archivedTask = async () => {
+    await firebase.firestore().collection("tasks").doc(id).update({
       archived: true,
     });
   };

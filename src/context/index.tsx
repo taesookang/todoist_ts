@@ -9,6 +9,12 @@ import {
   useSelectedProjectValue,
 } from "./selectedProjectContext";
 
+import {
+  AddTaskContext,
+  AddTaskProvider,
+  useAddTaskValue
+} from "./addTaskContext"
+
 export {
   ProjectsContext,
   ProjectsProvider,
@@ -16,4 +22,7 @@ export {
   SelectedProjectContext,
   SelectedProjectProvider,
   useSelectedProjectValue,
+  AddTaskContext,
+  AddTaskProvider,
+  useAddTaskValue
 };

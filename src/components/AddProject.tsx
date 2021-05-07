@@ -8,7 +8,7 @@ export const AddProject: React.FC = () => {
   const [projectName, setProjectName] = useState("");
 
   const projectId = generatePushId();
-  const { projects, setProjects } = useProjectsValue();
+  const { projects, setProjects } = useProjectsValue() || {};
 
   const addProject = () => {
     projectName &&
@@ -66,7 +66,7 @@ export const AddProject: React.FC = () => {
         role="button"
         tabIndex={0}
       >
-        Add project
+        Add Project
       </span>
     </div>
   );

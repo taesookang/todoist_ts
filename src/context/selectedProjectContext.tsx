@@ -1,11 +1,14 @@
 import React, { useState, useContext } from "react";
 
-interface SelectedProjectType {
+export interface SelectedProjectType {
   selectedProject: string;
-  setSelectedProject: React.Dispatch<React.SetStateAction<string>>
+  setSelectedProject: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const SelectedProjectContext = React.createContext<SelectedProjectType>({selectedProject: 'INBOX', setSelectedProject: () => 'INBOX'});
+export const SelectedProjectContext = React.createContext<SelectedProjectType>({
+  selectedProject: "INBOX",
+  setSelectedProject: () => "",
+});
 
 export const SelectedProjectProvider: React.FC<React.ReactNode> = ({
   children,

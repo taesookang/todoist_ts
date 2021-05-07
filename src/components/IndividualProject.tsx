@@ -10,11 +10,11 @@ interface Props {
 
 export const IndividualProject: React.FC<Props> = ({ project }) => {
   const [showConfirm, setShowConfirm] = useState(false);
-  const { projects, setProjects } = useProjectsValue();
-  const { setSelectedProject } = useSelectedProjectValue();
+  const { projects, setProjects } = useProjectsValue()|| {};
+  const { setSelectedProject } = useSelectedProjectValue() || {};
 
-  const deleteProject = (docId: string) => {
-    firebase
+  const deleteProject = async (docId: string) => {
+    await firebase
       .firestore()
       .collection("projects")
       .doc(docId)

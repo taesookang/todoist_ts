@@ -5,7 +5,8 @@ import IndividualProject from "./IndividualProject";
 export const Projects: React.FC = () => {
   const [active, setActive] = useState<string | null>(null);
   const { setSelectedProject } = useSelectedProjectValue();
-  const { projects } = useProjectsValue();
+  const { projects } = useProjectsValue()|| {};
+
 
   return (
     <>
