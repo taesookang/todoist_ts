@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import { useProjectsValue, useSelectedProjectValue } from "../context";
 import IndividualProject from "./IndividualProject";
 
-export const Projects: React.FC = () => {
-  const [active, setActive] = useState<string | null>(null);
+interface Props {
+  activeValue: string | null
+}
+
+
+export const Projects: React.FC<Props> = ({ activeValue }) => {
+  const [active, setActive] = useState<string | null>(activeValue);
   const { setSelectedProject } = useSelectedProjectValue();
-  const { projects } = useProjectsValue()|| {};
+  const { projects } = useProjectsValue()
 
 
   return (
@@ -13,17 +18,18 @@ export const Projects: React.FC = () => {
       {projects &&
         projects.map((project) => (
           <li
+            data-testid="project-action-parent"
             key={project.projectId}
             data-doc-id={project.docId}
-            data-testid="project-action"
             className={
               active === project.projectId
-                ? "active sidebar__project"
-                : "sidebar__project"
+              ? "active sidebar__project"
+              : "sidebar__project"
             }
-          >
+            >
             <div
               aria-label={`Select ${project.name} as the task project`}
+              data-testid="project-action"
               className="project-wrapper"
               role="button"
               tabIndex={0}

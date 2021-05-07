@@ -102,7 +102,7 @@ export const Sidebar: React.FC = () => {
         </span>
         <h2>Projects</h2>
       </div>
-      <ul className="sidebar__projects">{showProjects && <Projects />}</ul>
+      <ul className="sidebar__projects">{showProjects && <Projects activeValue={active} />}</ul>
 
       {showProjects && <AddProject />}
     </div>
