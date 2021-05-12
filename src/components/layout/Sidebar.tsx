@@ -23,6 +23,7 @@ export const Sidebar: React.FC = () => {
         >
           <div
             aria-label="Show inbox tasks"
+            data-testid="inbox-action"
             tabIndex={0}
             role="button"
             onClick={() => {
@@ -46,6 +47,7 @@ export const Sidebar: React.FC = () => {
         >
           <div
             aria-label="Show today's asks"
+            data-testid="today-action"
             tabIndex={0}
             role="button"
             onClick={() => {
@@ -69,6 +71,7 @@ export const Sidebar: React.FC = () => {
         >
           <div
             aria-label="Show tasks for the next 7 days"
+            data-testid="next_7-action"
             tabIndex={0}
             role="button"
             onClick={() => {
@@ -102,9 +105,11 @@ export const Sidebar: React.FC = () => {
         </span>
         <h2>Projects</h2>
       </div>
-      <ul className="sidebar__projects">{showProjects && <Projects activeValue={active} />}</ul>
+      <ul className="sidebar__projects">
+        {showProjects && <Projects activeValue={active} />}
+      </ul>
 
-      {showProjects && <AddProject />}
+      {showProjects && <AddProject shouldShow={false} />}
     </div>
   );
 };

@@ -1,30 +1,35 @@
 import React from "react";
 import { FaPizzaSlice } from "react-icons/fa";
 import { AddTask } from "../AddTask";
-import { useAddTaskValue } from '../../context'
+import { useAddTaskValue } from "../../context";
 
 interface Props {
   darkMode: boolean;
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-
 export const Header: React.FC<Props> = ({ darkMode, setDarkMode }) => {
   // const [shouldShowMain, setShouldShowMain] = useState(false);
   // const [showQuickAddTask, setShowQuickAddTask] = useState(false);
 
-  const { shouldShowMain, setShouldShowMain, showQuickAddTask, setShowQuickAddTask } = useAddTaskValue();
+  const {
+    shouldShowMain,
+    setShouldShowMain,
+    showQuickAddTask,
+    setShowQuickAddTask,
+  } = useAddTaskValue();
 
   return (
-    <header>
+    <header className="header" data-testid="header">
       <nav>
         <div className="logo">
           <img src="/images/logo.png" alt="Todoist" />
         </div>
         <div className="settings">
           <ul>
-            <li data-testid="quick-add-task-action" className="settings__add">
+            <li className="settings__add">
               <button
+                data-testid="quick-add-task-action"
                 aria-label="Quick add task"
                 type="button"
                 onClick={() => {
@@ -39,8 +44,9 @@ export const Header: React.FC<Props> = ({ darkMode, setDarkMode }) => {
                 +
               </button>
             </li>
-            <li data-testid="dark-mode-action" className="settings__darkmode">
+            <li className="settings__darkmode">
               <button
+                data-testid="dark-mode-action"
                 aria-label="Darkmode on/off"
                 type="button"
                 onClick={() => setDarkMode(!darkMode)}

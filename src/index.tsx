@@ -3,7 +3,7 @@ import App from './App';
 import './scss/base.scss'
 
 ReactDOM.render(
-    <App />,
+    <App darkModeDefault={false} />,
   document.getElementById('root')
 );
 

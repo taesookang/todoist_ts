@@ -31,7 +31,10 @@
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
       "!src/index.tsx",
-      "!src/hooks/*.tsx"
+      "!src/hooks/*.tsx",
+      "!src/context/*.tsx",
+      "!src/types/*.tsx",
+      "!src/react-app-env.d.ts"
     ],
     "coverageThreshold": {
       "global": {

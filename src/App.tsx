@@ -7,8 +7,12 @@ import {
   AddTaskProvider,
 } from "./context";
 
-export const App: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(false);
+interface Props {
+  darkModeDefault : boolean
+}
+
+export const App: React.FC<Props> = ({ darkModeDefault }) => {
+  const [darkMode, setDarkMode] = useState(darkModeDefault);
 
   return (
     <SelectedProjectProvider>

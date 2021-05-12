@@ -3,16 +3,20 @@ import { firebase } from "../firebase";
 import { generatePushId } from "../helpers";
 import { useProjectsValue } from "../context";
 
-export const AddProject: React.FC = () => {
-  const [show, setShow] = useState(false);
+interface Props {
+  shouldShow: boolean
+}
+
+export const AddProject: React.FC<Props> = ({ shouldShow }) => {
+  const [show, setShow] = useState(shouldShow)
   const [projectName, setProjectName] = useState("");
 
   const projectId = generatePushId();
   const { projects, setProjects } = useProjectsValue() || {};
 
-  const addProject = () => {
+  const addProject = async () => {
     projectName &&
-      firebase
+      await firebase
         .firestore()
         .collection("projects")
         .add({
@@ -30,7 +34,7 @@ export const AddProject: React.FC = () => {
   return (
     <div className="add-project" data-testid="add-project">
       {show && (
-        <div className="add-project__input">
+        <div className="add-project__input" data-testid="add-project-inner">
           <input
             value={projectName}
             onChange={(e) => setProjectName(e.target.value)}
@@ -52,6 +56,7 @@ export const AddProject: React.FC = () => {
             className="add-project__cancel"
             data-testid="hide-project-overlay"
             onClick={() => setShow(false)}
+            onKeyDown={() => setShow(false)}
           >
             Cancel
           </span>

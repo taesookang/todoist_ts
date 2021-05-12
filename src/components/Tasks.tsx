@@ -12,7 +12,7 @@ import {
 
 export const Tasks: React.FC = () => {
   const { selectedProject } = useSelectedProjectValue();
-  const { projects } = useProjectsValue() || {};
+  const { projects } = useProjectsValue()
   const { tasks } = useTasks(selectedProject);
   const { shouldShowMain, setShowQuickAddTask } = useAddTaskValue();
 
@@ -37,7 +37,7 @@ export const Tasks: React.FC = () => {
 
   return (
     <div className="tasks" data-testid="tasks">
-      <h2 data-testid="project-name"> {projectName} </h2>
+      <h2 data-testid="project-name">{projectName}</h2>
 
       <ul className="tasks__list">
         {tasks.map((task) => (
