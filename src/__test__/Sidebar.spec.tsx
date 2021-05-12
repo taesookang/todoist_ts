@@ -2,7 +2,6 @@ import React from "react";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import Sidebar from "../components/layout/Sidebar";
 import { useSelectedProjectValue, useProjectsValue } from "../context";
-import { mocked } from "ts-jest/utils";
 
 jest.mock("../context", () => ({
   useSelectedProjectValue: jest.fn(() => ({
