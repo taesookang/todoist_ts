@@ -1,5 +1,5 @@
 import React from "react";
-import { FaPizzaSlice } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { AddTask } from "../AddTask";
 import { useAddTaskValue } from "../../context";
 
@@ -9,8 +9,6 @@ interface Props {
 }
 
 export const Header: React.FC<Props> = ({ darkMode, setDarkMode }) => {
-  // const [shouldShowMain, setShouldShowMain] = useState(false);
-  // const [showQuickAddTask, setShowQuickAddTask] = useState(false);
 
   const {
     shouldShowMain,
@@ -52,7 +50,7 @@ export const Header: React.FC<Props> = ({ darkMode, setDarkMode }) => {
                 onClick={() => setDarkMode(!darkMode)}
                 onKeyDown={() => setDarkMode(!darkMode)}
               >
-                <FaPizzaSlice />
+                { darkMode ? <FaSun /> : <FaMoon /> }
               </button>
             </li>
           </ul>
