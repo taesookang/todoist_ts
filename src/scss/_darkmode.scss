@@ -1,8 +1,104 @@
 .darkmode {
+    background-color: #1f1f1f;
+    color: $darkmode-text;
     header {
         -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
-        background-color: #282828;
-        border-color: transparent;
     }
+
+    .content {
+        background-color: $darkmode-bg;
+
+        .sidebar {
+            background-color: #252525;
+            border-right: none;
+
+            &__generic {
+                li {
+                    color: $darkmode-text;
+                    div:nth-child(1) {
+                        span:first-of-type {
+                            svg {
+                                color: $darkmode-text;
+                            }
+                        }
+                    }
+                    &.active,
+                    &:hover {
+                        background: $darkmode-bg;
+                    }
+                }
+            }
+
+            &__project {
+
+                &.active,
+                &:hover {
+                    background: $darkmode-bg;
+                }
+            }
+
+            &__middle {
+                
+                border-bottom:1px solid $darkmode-bg;
+                
+        
+                span {
+                    color: $darkmode-text;
+                }
+        
+                h2 {
+                    margin: 0;
+                    color: $darkmode-text;
+                }
+            }
+
+            .add-project {
+                &__input {
+                    input {
+                        background-color: $darkmode-bg;
+                        border: $darkmode-border;
+                        color: $darkmode-text;
+                    }
+                }
+                &__text, &__cancel {
+                    color: $darkmode-text;
+                }
+            }
+        }
+
+        .tasks {
+            background-color: $darkmode-bg;
+            border-right: none;
+
+            &__list {
+                li {
+                    border-bottom: $darkmode-border;
+                    span {
+                        color: $darkmode-text;
+                    }
+                }
+            }
+        }
+    }
+
+    .add-task {
+        &__text, &__cancel {
+            color: $darkmode-text;
+        }
+
+       &__overlay {
+           
+        .add-task__main {
+            background: $darkmode-bg-light;
+        }
+       }
+
+       &__content {
+           background: $darkmode-bg;
+           border: $darkmode-border;
+           color: $darkmode-text;
+       }
+
+    } 
 }
